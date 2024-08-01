@@ -1,0 +1,119 @@
+/* QR scan */
+.qr-bar {
+	position: absolute;
+	top: 10px;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	margin: auto;
+	align-items: center;
+	background: #ffffff;
+	border-radius: 10px;
+	padding: 30px 0;
+	width: 95vw;
+}
+
+#video-container video {
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	width: 350px;
+	height: 60vh;
+}
+
+.upload-btn-text {
+	margin-right: 10px;
+	display: flex;
+	margin: auto 0;
+}
+
+.scanned-qr {
+	font-size: 20px;
+	text-align: center;
+	font-weight: 600;
+	color: #42ca50;
+}
+
+.upload-qr {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	font-size: 18px;
+	border: 2px solid rgb(180, 184, 184);
+	border-radius: 100px;
+	padding: 5px;
+	background: white;
+	width: 70%;
+	margin: auto;
+	cursor: pointer;
+}
+
+.upload-qr:hover {
+	background: rgb(167, 167, 167);
+	color: white;
+}
+
+.center-box input {
+	border: 3px solid gray;
+	width: 80%;
+	height: 80px;
+	margin-top: 300px;
+	border-radius: 10px;
+	font-size: 30px;
+}
+/* 
+div {
+	margin-bottom: 16px;
+} */
+
+#video-container {
+	line-height: 0;
+}
+
+#video-container.example-style-1 .scan-region-highlight-svg,
+#video-container.example-style-1 .code-outline-highlight {
+	stroke: #64a2f3 !important;
+}
+
+#video-container.example-style-2 {
+	position: relative;
+	width: max-content;
+	height: max-content;
+	overflow: hidden;
+}
+#video-container.example-style-2 .scan-region-highlight {
+	border-radius: 30px;
+	outline: rgba(0, 0, 0, 0.25) solid 50vmax;
+}
+#video-container.example-style-2 .scan-region-highlight-svg {
+	display: none;
+}
+#video-container.example-style-2 .code-outline-highlight {
+	stroke: rgba(255, 255, 255, 0.5) !important;
+	stroke-width: 15 !important;
+	stroke-dasharray: none !important;
+}
+
+#flash-toggle {
+	display: none;
+}
+
+hr {
+	margin-top: 32px;
+}
+input[type="file"] {
+	display: block;
+	margin-bottom: 16px;
+}
+
+.close-btn {
+	position: absolute;
+	top: 0.5%;
+	left: 88%;
+}
