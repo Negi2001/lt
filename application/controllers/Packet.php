@@ -252,42 +252,25 @@ class Packet extends CI_Controller
 
     public function redeem_amount()
     {
-        // Fetch total_amount from the session
-        $data['total_amount'] = $this->session->userdata('total_amount') ?? 0;
+        $upi_id = $this->input->post('upi');
+        $total_amount = $this->input->post('total_amount');
 
-        // Check if form is submitted
-        if ($this->input->post('upi')) {
-            // Form has been submitted
-            $upi_id = $this->input->post('upi');
-            $mobile_number = $this->session->userdata('mobile_number');
+        $mobile_number = $this->session->userdata('mobile_number');
+        if ($mobile_number) {
+            // Update the user's UPI ID and set the status to 1
+            $this->db->set('total_amount', $total_amount);
+            $this->db->set('upi_id', $upi_id);
+            $this->db->set('status', 1);
+            $this->db->where('mobile_number', $mobile_number);
 
-            if ($mobile_number) {
-                // Prepare data for updating the 'user_data' table
-                $update_data = array(
-                    'upi_id' => $upi_id,
-                    'status' => 1,
-                    'total_amount' => $data['total_amount'] // Ensure the total amount is updated
-                );
-
-                // Update the user's UPI ID and status in the 'user_data' table
-                $this->db->where('mobile_number', $mobile_number);
-                if ($this->db->update('user_data', $update_data)) {
-                    // Clear the session variable
-                    $this->session->unset_userdata('total_amount');
-
-                    // Redirect to the history page
-                    redirect(base_url('Packet/history'));
-                } else {
-                    // Redirect to failure page
-                    redirect(base_url('Packet/upiid')); // Redirect to a failure page
-                }
+            if ($this->db->update('user_data')) {
+                // Successfully updated
+                $this->session->unset_userdata('total_amount'); 
+                redirect(base_url('Packet/history')); // Redirect to a success page
             } else {
-                // Handle the case where mobile_number is not found in session
+                // Update failed
                 redirect(base_url('Packet/upiid')); // Redirect to a failure page
             }
-        } else {
-            // Form not submitted, load the redeem page
-            $this->load->view('redeem_amount_view', $data);
         }
     }
 }
